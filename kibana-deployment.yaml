@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kibana-logging
-  namespace: efk-aks
+  namespace: efklog
   labels:
     k8s-app: kibana-logging
     addonmanager.kubernetes.io/mode: Reconcile
@@ -40,15 +40,4 @@ spec:
         - containerPort: 5601
           name: ui
           protocol: TCP
-        livenessProbe:
-          httpGet:
-            path: /api/status
-            port: ui
-          initialDelaySeconds: 5
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /api/status
-            port: ui
-          initialDelaySeconds: 5
-          timeoutSeconds: 10
+        
